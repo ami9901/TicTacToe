@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
     private static int turn=0;
+    private static boolean gameWithComputer=true,won=false;
     ArrayList<Integer> player1=new ArrayList<>();
     ArrayList<Integer> player2=new ArrayList<>();
     void play(int turnNumber,Button selected){
@@ -33,6 +34,45 @@ public class MainActivity extends AppCompatActivity {
             selected.setEnabled(false);
         }
         checkWinner();
+    }
+    void autoPlay(int turnNumber,Button selected){
+            selected.setBackgroundColor(getResources().getColor(R.color.cream));
+            selected.setText("O");
+            selected.setEnabled(false);
+            turn++;
+            checkWinner();
+            if(turn%2==0&&turn<9&&(!won)) {
+                int id;
+                id = (int) (Math.random() * 9) + 1;
+                while (player1.contains(id)||player2.contains(id)){
+                    id = (int) (Math.random() * 9) + 1;
+                    Toast.makeText(this, "new id : " + id, Toast.LENGTH_LONG).show();
+                }
+                Toast.makeText(this, "" + id, Toast.LENGTH_LONG).show();
+               addInTheList(turn,id);
+                Button button = (Button) findViewById(getResources().getIdentifier("b" + id, "id",
+                        this.getPackageName()));
+                button.setBackgroundColor(getResources().getColor(R.color.coral));
+                button.setText("X");
+                button.setEnabled(false);
+                checkWinner();
+            }
+
+    }
+    void reset(View view){
+        for (int i = 1; i <= 9; i++)
+        {
+            Button button = (Button) findViewById(getResources().getIdentifier("b" + i, "id",
+                    this.getPackageName()));
+            button.setEnabled(true);
+            button.setText("");
+            button.setBackgroundColor(getResources().getColor(R.color.btnclr));
+        }
+        turn=0;
+        won=false;
+        player1.clear();
+        player2.clear();
+
     }
     void addInTheList(int t,int bid){
         if((t&1)==1){
@@ -57,12 +97,14 @@ public class MainActivity extends AppCompatActivity {
                 ||(player1.contains(4)&&player1.contains(5)&&player1.contains(6))||(player1.contains(7)&&player1.contains(8)&&player1.contains(9))) {
             Toast.makeText(this, "Player1 wins!", Toast.LENGTH_LONG).show();
             disableAll();
+            won=true;
         }
         else if((player2.contains(1)&&player2.contains(2)&&player2.contains(3))||(player2.contains(1)&&player2.contains(4)&&player2.contains(7))||(player2.contains(1)&&player2.contains(5)&&player2.contains(9))
                 ||(player2.contains(2)&&player2.contains(5)&&player2.contains(8))||(player2.contains(3)&&player2.contains(6)&&player2.contains(9))||(player2.contains(3)&&player2.contains(5)&&player2.contains(7))
                 ||(player2.contains(4)&&player2.contains(5)&&player2.contains(6))||(player2.contains(7)&&player2.contains(8)&&player2.contains(9))) {
             Toast.makeText(this, "Player2 wins!", Toast.LENGTH_LONG).show();
             disableAll();
+            won=true;
         }
 
     }
@@ -108,7 +150,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
         }
-
+        if(!gameWithComputer)
         play(turn,selected);
+        else
+            autoPlay(turn,selected);
     }
 }
