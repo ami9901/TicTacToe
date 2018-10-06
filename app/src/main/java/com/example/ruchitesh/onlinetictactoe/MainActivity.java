@@ -11,19 +11,23 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    private static int turn=0;
+    private static boolean won=false;
+    boolean gameWithComputer=true;
+    ArrayList<Integer> player1=new ArrayList<>();
+    ArrayList<Integer> player2=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        gameWithComputer=getIntent().getExtras().getBoolean("computerPlay");
+        reset(null);
 
     }
-    private static int turn=0;
-    private static boolean gameWithComputer=true,won=false;
-    ArrayList<Integer> player1=new ArrayList<>();
-    ArrayList<Integer> player2=new ArrayList<>();
-    void play(int turnNumber,Button selected){
-        if(turnNumber%2==0){
+
+    void play(Button selected){
+        if(turn%2==0){
             selected.setBackgroundColor(getResources().getColor(R.color.coral));
             selected.setText("X");
             selected.setEnabled(false);
@@ -34,8 +38,10 @@ public class MainActivity extends AppCompatActivity {
             selected.setEnabled(false);
         }
         checkWinner();
+        if(turn==9&&won==false)
+            Toast.makeText(this,"Draw!!",Toast.LENGTH_LONG).show();
     }
-    void autoPlay(int turnNumber,Button selected){
+    void autoPlay(Button selected){
             selected.setBackgroundColor(getResources().getColor(R.color.cream));
             selected.setText("O");
             selected.setEnabled(false);
@@ -49,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(this, "new id : " + id, Toast.LENGTH_LONG).show();
                 }
                 Toast.makeText(this, "" + id, Toast.LENGTH_LONG).show();
-               addInTheList(turn,id);
+               addInTheList(id);
                 Button button = (Button) findViewById(getResources().getIdentifier("b" + id, "id",
                         this.getPackageName()));
                 button.setBackgroundColor(getResources().getColor(R.color.coral));
@@ -57,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
                 button.setEnabled(false);
                 checkWinner();
             }
+        if(turn==10&&won==false)
+            Toast.makeText(this,"Draw!!",Toast.LENGTH_LONG).show();
 
     }
     void reset(View view){
@@ -74,8 +82,8 @@ public class MainActivity extends AppCompatActivity {
         player2.clear();
 
     }
-    void addInTheList(int t,int bid){
-        if((t&1)==1){
+    void addInTheList(int bid){
+        if((turn&1)==1){
 //            Toast.makeText(this,"added into player1",Toast.LENGTH_LONG).show();
             player1.add(bid);
         }
@@ -107,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
             won=true;
         }
 
+
     }
     void makeChange(View view){
         Button selected = (Button) view;
@@ -114,45 +123,47 @@ public class MainActivity extends AppCompatActivity {
         switch (selected.getId()){
             case R.id.b1:
 //                //Toast.makeText(this,"b1 selected",//Toast.LENGTH_LONG).show();
-                addInTheList(turn,1);
+                addInTheList(1);
                 break;
             case R.id.b2:
                 //Toast.makeText(this,"b2 selected",//Toast.LENGTH_LONG).show();
-                addInTheList(turn,2);
+                addInTheList(2);
                 break;
             case R.id.b3:
                 //Toast.makeText(this,"b3 selected",//Toast.LENGTH_LONG).show();
-                addInTheList(turn,3);
+                addInTheList(3);
                 break;
             case R.id.b4:
-                addInTheList(turn,4);
+                addInTheList(4);
                 //Toast.makeText(this,"b4 selected",//Toast.LENGTH_LONG).show();
                 break;
             case R.id.b5:
-                addInTheList(turn,5);
+                addInTheList(5);
                 //Toast.makeText(this,"b5 selected",//Toast.LENGTH_LONG).show();
                 break;
             case R.id.b6:
-                addInTheList(turn,6);
+                addInTheList(6);
                 //Toast.makeText(this,"b6 selected",//Toast.LENGTH_LONG).show();
                 break;
             case R.id.b7:
-                addInTheList(turn,7);
+                addInTheList(7);
                 //Toast.makeText(this,"b7 selected",//Toast.LENGTH_LONG).show();
                 break;
             case R.id.b8:
-                addInTheList(turn,8);
+                addInTheList(8);
                 //Toast.makeText(this,"b8 selected",//Toast.LENGTH_LONG).show();
                 break;
             case R.id.b9:
-                addInTheList(turn,9);
+                addInTheList(9);
                 //Toast.makeText(this,"b9 selected",//Toast.LENGTH_LONG).show();
                 break;
 
         }
         if(!gameWithComputer)
-        play(turn,selected);
+        play(selected);
         else
-            autoPlay(turn,selected);
+            autoPlay(selected);
+        //Toast.makeText(this,"Last "+turn,Toast.LENGTH_LONG).show();
+
     }
 }
