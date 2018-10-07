@@ -1,138 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TableRow
+    <TextView
+
+        android:id="@+id/result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10px"
+        android:gravity="center"
+        android:textSize="40sp"
+        app:fontFamily="cursive" />
+
+    <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center">
 
-        <Button
-            android:id="@+id/b1"
-            android:layout_width="40pt"
-            android:layout_height="40pt"
-            android:layout_margin="3pt"
-            android:onClick="makeChange"
-            android:textColor="@android:color/white"
-            android:textSize="50sp" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
 
-        <Button
-            android:id="@+id/b2"
-            android:layout_width="40pt"
-            android:layout_height="40pt"
-            android:layout_margin="3pt"
-            android:onClick="makeChange"
-            android:textColor="@android:color/white"
-            android:textSize="50sp" />
+            <Button
+                android:id="@+id/b1"
+                android:layout_width="40pt"
+                android:layout_height="40pt"
+                android:layout_margin="3pt"
+                android:onClick="makeChange"
+                android:textColor="@android:color/white"
+                android:textSize="50sp" />
 
-        <Button
-            android:id="@+id/b3"
-            android:layout_width="40pt"
-            android:layout_height="40pt"
-            android:layout_margin="3pt"
-            android:onClick="makeChange"
-            android:textColor="@android:color/white"
-            android:textSize="50sp" />
-    </TableRow>
+            <Button
+                android:id="@+id/b2"
+                android:layout_width="40pt"
+                android:layout_height="40pt"
+                android:layout_margin="3pt"
+                android:onClick="makeChange"
+                android:textColor="@android:color/white"
+                android:textSize="50sp" />
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center">
+            <Button
+                android:id="@+id/b3"
+                android:layout_width="40pt"
+                android:layout_height="40pt"
+                android:layout_margin="3pt"
+                android:onClick="makeChange"
+                android:textColor="@android:color/white"
+                android:textSize="50sp" />
+        </TableRow>
 
-        <Button
-            android:id="@+id/b4"
-            android:layout_width="40pt"
-            android:layout_height="40pt"
-            android:layout_marginLeft="3pt"
-            android:layout_marginRight="3pt"
-            android:layout_marginBottom="3pt"
-            android:onClick="makeChange"
-            android:textColor="@android:color/white"
-            android:textSize="50sp" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
 
-        <Button
-            android:id="@+id/b5"
-            android:layout_width="40pt"
-            android:layout_height="40pt"
-            android:layout_marginLeft="3pt"
-            android:layout_marginRight="3pt"
-            android:layout_marginBottom="3pt"
-            android:onClick="makeChange"
-            android:textColor="@android:color/white"
-            android:textSize="50sp" />
+            <Button
+                android:id="@+id/b4"
+                android:layout_width="40pt"
+                android:layout_height="40pt"
+                android:layout_marginLeft="3pt"
+                android:layout_marginRight="3pt"
+                android:layout_marginBottom="3pt"
+                android:onClick="makeChange"
+                android:textColor="@android:color/white"
+                android:textSize="50sp" />
 
-        <Button
-            android:id="@+id/b6"
-            android:layout_width="40pt"
-            android:layout_height="40pt"
-            android:layout_marginLeft="3pt"
-            android:layout_marginRight="3pt"
-            android:layout_marginBottom="3pt"
-            android:onClick="makeChange"
-            android:textColor="@android:color/white"
-            android:textSize="50sp" />
-    </TableRow>
+            <Button
+                android:id="@+id/b5"
+                android:layout_width="40pt"
+                android:layout_height="40pt"
+                android:layout_marginLeft="3pt"
+                android:layout_marginRight="3pt"
+                android:layout_marginBottom="3pt"
+                android:onClick="makeChange"
+                android:textColor="@android:color/white"
+                android:textSize="50sp" />
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center">
+            <Button
+                android:id="@+id/b6"
+                android:layout_width="40pt"
+                android:layout_height="40pt"
+                android:layout_marginLeft="3pt"
+                android:layout_marginRight="3pt"
+                android:layout_marginBottom="3pt"
+                android:onClick="makeChange"
+                android:textColor="@android:color/white"
+                android:textSize="50sp" />
+        </TableRow>
 
-        <Button
-            android:id="@+id/b7"
-            android:layout_width="40pt"
-            android:layout_height="40pt"
-            android:layout_marginLeft="3pt"
-            android:layout_marginRight="3pt"
-            android:layout_marginBottom="3pt"
-            android:onClick="makeChange"
-            android:textColor="@android:color/white"
-            android:textSize="50sp" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
 
-        <Button
-            android:id="@+id/b8"
-            android:layout_width="40pt"
-            android:layout_height="40pt"
-            android:layout_marginLeft="3pt"
-            android:layout_marginRight="3pt"
-            android:layout_marginBottom="3pt"
-            android:onClick="makeChange"
-            android:textColor="@android:color/white"
-            android:textSize="50sp" />
+            <Button
+                android:id="@+id/b7"
+                android:layout_width="40pt"
+                android:layout_height="40pt"
+                android:layout_marginLeft="3pt"
+                android:layout_marginRight="3pt"
+                android:layout_marginBottom="3pt"
+                android:onClick="makeChange"
+                android:textColor="@android:color/white"
+                android:textSize="50sp" />
 
-        <Button
-            android:id="@+id/b9"
-            android:layout_width="40pt"
-            android:layout_height="40pt"
-            android:layout_marginLeft="3pt"
-            android:layout_marginRight="3pt"
-            android:layout_marginBottom="3pt"
-            android:onClick="makeChange"
-            android:textColor="@android:color/white"
-            android:textSize="50sp" />
-    </TableRow>
+            <Button
+                android:id="@+id/b8"
+                android:layout_width="40pt"
+                android:layout_height="40pt"
+                android:layout_marginLeft="3pt"
+                android:layout_marginRight="3pt"
+                android:layout_marginBottom="3pt"
+                android:onClick="makeChange"
+                android:textColor="@android:color/white"
+                android:textSize="50sp" />
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center" >
-        <TextView
-            android:id="@+id/result"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/b9"
+                android:layout_width="40pt"
+                android:layout_height="40pt"
+                android:layout_marginLeft="3pt"
+                android:layout_marginRight="3pt"
+                android:layout_marginBottom="3pt"
+                android:onClick="makeChange"
+                android:textColor="@android:color/white"
+                android:textSize="50sp" />
+        </TableRow>
 
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="reset"
-            android:text="PlayAgain?" />
-    </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
 
-</TableLayout>
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="reset"
+                android:text="PlayAgain?" />
+        </TableRow>
+    </TableLayout>
+</LinearLayout>

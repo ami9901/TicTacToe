@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.lang.reflect.Array;
@@ -16,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     boolean gameWithComputer=true;
     ArrayList<Integer> player1=new ArrayList<>();
     ArrayList<Integer> player2=new ArrayList<>();
-
+    TextView resultbox;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,36 +40,42 @@ public class MainActivity extends AppCompatActivity {
             selected.setEnabled(false);
         }
         checkWinner();
-        if(turn==9&&won==false)
+        if(turn==9&&won==false) {
+            resultbox.setText("Draw!!");
             Toast.makeText(this,"Draw!!",Toast.LENGTH_LONG).show();
+        }
     }
     void autoPlay(Button selected){
-            selected.setBackgroundColor(getResources().getColor(R.color.cream));
-            selected.setText("O");
-            selected.setEnabled(false);
-            turn++;
-            checkWinner();
-            if(turn%2==0&&turn<9&&(!won)) {
-                int id;
+        selected.setBackgroundColor(getResources().getColor(R.color.cream));
+        selected.setText("O");
+        selected.setEnabled(false);
+        turn++;
+        checkWinner();
+        if(turn%2==0&&turn<9&&(!won)) {
+            int id;
+            id = (int) (Math.random() * 9) + 1;
+            while (player1.contains(id)||player2.contains(id)){
                 id = (int) (Math.random() * 9) + 1;
-                while (player1.contains(id)||player2.contains(id)){
-                    id = (int) (Math.random() * 9) + 1;
-                    Toast.makeText(this, "new id : " + id, Toast.LENGTH_LONG).show();
-                }
-                Toast.makeText(this, "" + id, Toast.LENGTH_LONG).show();
-               addInTheList(id);
-                Button button = (Button) findViewById(getResources().getIdentifier("b" + id, "id",
-                        this.getPackageName()));
-                button.setBackgroundColor(getResources().getColor(R.color.coral));
-                button.setText("X");
-                button.setEnabled(false);
-                checkWinner();
+                Toast.makeText(this, "new id : " + id, Toast.LENGTH_LONG).show();
             }
-        if(turn==10&&won==false)
-            Toast.makeText(this,"Draw!!",Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "" + id, Toast.LENGTH_LONG).show();
+            addInTheList(id);
+            Button button = (Button) findViewById(getResources().getIdentifier("b" + id, "id",
+                    this.getPackageName()));
+            button.setBackgroundColor(getResources().getColor(R.color.coral));
+            button.setText("X");
+            button.setEnabled(false);
+            checkWinner();
+        }
+        if(turn==10&&won==false) {
+            resultbox.setText("Draw!!");
+            Toast.makeText(this, "Draw!!", Toast.LENGTH_LONG).show();
+        }
 
     }
     void reset(View view){
+        resultbox=(TextView)findViewById(R.id.result);
+        resultbox.setText("");
         for (int i = 1; i <= 9; i++)
         {
             Button button = (Button) findViewById(getResources().getIdentifier("b" + i, "id",
@@ -104,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
                 ||(player1.contains(2)&&player1.contains(5)&&player1.contains(8))||(player1.contains(3)&&player1.contains(6)&&player1.contains(9))||(player1.contains(3)&&player1.contains(5)&&player1.contains(7))
                 ||(player1.contains(4)&&player1.contains(5)&&player1.contains(6))||(player1.contains(7)&&player1.contains(8)&&player1.contains(9))) {
             Toast.makeText(this, "Player1 wins!", Toast.LENGTH_LONG).show();
+            resultbox.setText("Player1 wins!");
             disableAll();
             won=true;
         }
@@ -111,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
                 ||(player2.contains(2)&&player2.contains(5)&&player2.contains(8))||(player2.contains(3)&&player2.contains(6)&&player2.contains(9))||(player2.contains(3)&&player2.contains(5)&&player2.contains(7))
                 ||(player2.contains(4)&&player2.contains(5)&&player2.contains(6))||(player2.contains(7)&&player2.contains(8)&&player2.contains(9))) {
             Toast.makeText(this, "Player2 wins!", Toast.LENGTH_LONG).show();
+            resultbox.setText("Player2 wins!");
             disableAll();
             won=true;
         }
@@ -160,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
         if(!gameWithComputer)
-        play(selected);
+            play(selected);
         else
             autoPlay(selected);
         //Toast.makeText(this,"Last "+turn,Toast.LENGTH_LONG).show();
