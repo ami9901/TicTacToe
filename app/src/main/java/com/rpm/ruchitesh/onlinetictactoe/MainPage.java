@@ -1,4 +1,4 @@
-package com.example.ruchitesh.onlinetictactoe;
+package com.rpm.ruchitesh.onlinetictactoe;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
